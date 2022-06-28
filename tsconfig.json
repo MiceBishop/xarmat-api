@@ -5,6 +5,8 @@
     "isolatedModules": true,
     "lib": [
       "es2017"
-    ]
+    ],
+    "strict": true,
+    "outDir": "dist"
   }
 }
