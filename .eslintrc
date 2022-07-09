@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off"
+  },
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base"

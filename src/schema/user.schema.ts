@@ -16,11 +16,13 @@ const createUserSchema = object({
     email: string({
       required_error: 'Password is required',
     }).email('Not a valid email'),
-    phoneNumber: string(),
-    companyName: string(),
-    address: string(),
-    birthdate: date(),
-    additionnalInfos: object({ }),
+    phoneNumber: string({
+      required_error: 'Phone number is required',
+    }),
+    companyName: string().optional(),
+    address: string().optional(),
+    birthdate: date().optional(),
+    additionnalInfos: object({}).optional(),
   }),
 });
 
