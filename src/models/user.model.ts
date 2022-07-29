@@ -1,5 +1,12 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import { SkillDocument } from './skill.model';
+
+export enum Role {
+  FREELANCER = 'freelancer',
+  PROFESSIONAL = 'professional',
+  ADMIN = 'admin',
+}
 
 export interface UserDocument extends mongoose.Document {
   email: string;
@@ -11,6 +18,8 @@ export interface UserDocument extends mongoose.Document {
   address: string | undefined;
   birthdate: Date | undefined;
   additionnalInfos: object | undefined;
+  role: Role;
+  skills: SkillDocument['_id'][];
   comparePassword(candidatePassword: string): Promise<Boolean>;
   createdAt: Date;
   updatedAt: Date;
@@ -27,6 +36,8 @@ const userSchema = new mongoose.Schema(
     address: { type: String },
     birthdate: { type: Date },
     additionnalInfos: { type: Object },
+    role: { type: String },
+    skills: [{ type: String }],
   },
   {
     timestamps: true,
