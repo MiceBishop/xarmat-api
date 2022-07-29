@@ -23,6 +23,9 @@ const createUserSchema = object({
     address: string().optional(),
     birthdate: date().optional(),
     additionnalInfos: object({}).optional(),
+    role: string({
+      required_error: 'Role is required',
+    }),
   }),
 });
 
