@@ -24,6 +24,6 @@ export async function updateSkill(query: FilterQuery<SkillDocument>, update: Upd
   return Skill.updateOne(query, update);
 }
 
-export function deleteSkill(query: FilterQuery<SkillDocument>) {
+export async function deleteSkill(query: FilterQuery<SkillDocument>) {
   return Skill.deleteOne(query);
 }
