@@ -1,5 +1,5 @@
 import Router from 'express-promise-router';
-import { publishJob } from '../../controllers/job.controller';
+import { getAllJobs, getMyPublishedJobs, publishJob } from '../../controllers/job.controller';
 import { requireUser } from '../../middleware/requireUser';
 import { validateRole } from '../../middleware/vaildatePrivilege';
 import validate from '../../middleware/validateResource';
@@ -12,8 +12,20 @@ router.post(
   '/publish',
   validate(createJobSchema),
   requireUser,
-  validateRole(Role.PROFESSIONAL),
+  validateRole([Role.PROFESSIONAL]),
   publishJob,
+);
+router.get(
+  '/my-jobs',
+  requireUser,
+  validateRole([Role.PROFESSIONAL]),
+  getMyPublishedJobs,
+);
+router.get(
+  '/',
+  requireUser,
+  validateRole([Role.ADMIN, Role.PROFESSIONAL, Role.FREELANCER]),
+  getAllJobs,
 );
 
 export default router;

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import type { ProposalDocument } from './proposal.model';
 import { SkillDocument } from './skill.model';
 import { UserDocument } from './user.model';
 
@@ -16,6 +17,7 @@ export interface JobDocument extends mongoose.Document {
   budget: number[];
   duration: JobDuration;
   skills: SkillDocument['_id'][];
+  proposals: ProposalDocument['_id'][];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,7 +29,8 @@ const jobSchema = new mongoose.Schema(
     description: { type: String },
     budget: [{ type: Number }],
     duration: { type: String },
-    skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
+    skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill', default: [] }],
+    proposals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Proposal', default: [] }],
   },
   {
     timestamps: true,
