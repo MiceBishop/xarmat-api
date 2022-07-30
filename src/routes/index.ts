@@ -1,16 +1,16 @@
 import Router from 'express-promise-router';
 import healthcheck from './healthcheck';
-import users from './users';
-import sessions from './sessions';
+import auth from './auth';
 import skills from './skills';
 import jobs from './jobs';
+import proposals from './proposals';
 
 const router = Router();
 
 router.use('/healthcheck', healthcheck);
-router.use('/users', users);
-router.use('/sessions', sessions);
+router.use('/auth', auth);
 router.use('/skills', skills);
 router.use('/jobs', jobs);
+router.use('/proposals', proposals);
 
 export default router;

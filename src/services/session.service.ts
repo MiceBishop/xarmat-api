@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import get from 'lodash/get';
 import { FilterQuery, UpdateQuery } from 'mongoose';
 import Session, { SessionDocument } from '../models/session.model';
@@ -35,7 +36,7 @@ export async function refreshAccessToken({ refreshToken }: { refreshToken: strin
   }
 
   const accessToken = signJwt(
-    { ...user, session: session._id },
+    { ...omit(user, 'password'), session: session._id },
     {
       expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES,
     },
